@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication1.Models.DTOs;
 using WebApplication1.Models.EFModels;
 using WebApplication1.Models.Services;
 
@@ -29,6 +30,11 @@ namespace WebApplication1.Models.Repository
         public Register FindById(int id)
         {
             return db.Registers.Find(id);
+        }
+
+        public void Create(RegisterDTO register)
+        {
+            throw new NotImplementedException();
         }
     }
 }

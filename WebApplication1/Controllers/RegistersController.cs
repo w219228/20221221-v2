@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models.DTOs;
 using WebApplication1.Models.EFModels;
 using WebApplication1.Models.Repository;
 using WebApplication1.Models.Services;
@@ -68,7 +69,7 @@ namespace WebApplication1.Controllers
 
             try
             {
-                new RegisterService(repository).Create(register);
+                new RegisterService(repository).Create(register.EntityToDTO());
                 //驗證Eail是否已經存在
                 //var dataInDb = db.Registers.FirstOrDefault(x => x.Email == register.Email); //LINQ找符合的第一筆，如果沒找到就是null
                 //if (dataInDb != null)//表示這筆資料有紀錄

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebApplication1.Models.DTOs;
 using WebApplication1.Models.EFModels;
 using WebApplication1.Models.Repository;
 
@@ -17,20 +18,20 @@ namespace WebApplication1.Models.Services
         {
             repository = repo;
         }
-        public void Create(Register register)
+        public void Create(RegisterDTO registerDto)
         {
             //var dataInDb = db.Registers.FirstOrDefault(x => x.Email == register.Email); //LINQ找符合的第一筆，如果沒找到就是null
 
-            var dataInDb = repository.FindByEmail(register.Email);
+            var dataInDb = repository.FindByEmail(registerDto.Email);
             if (dataInDb != null)//表示這筆資料有紀錄
             {
                 throw new Exception("這個Email已經報名過了，無法再度報名");
 
             }
             //用程式指定建檔時間，而不是由使用者輸入
-            register.CreatedTime = DateTime.Now;
+            registerDto.CreatedTime = DateTime.Now;
 
-            new RegisterRepository().Create(register);
+            repository.Create(registerDto);
             //db.Registers.Add(register);
             //db.SaveChanges();
         }
